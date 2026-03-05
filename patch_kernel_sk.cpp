@@ -127,7 +127,7 @@ int main(int argc, char* argv[]) {
 	++argv;
 	--argc;
 
-	std::cout << "TigerRoot(Pro) ARM64 Linux内核ROOT提权工具 V1.0" << std::endl;
+	std::cout << "SKRoot(Pro) ARM64 Linux内核ROOT提权工具 V1.0" << std::endl;
 	std::cout << "仅支持 Linux 内核 6.1.x、6.6.x 和 6.12.x" << std::endl << std::endl;
 
 	if (argc < 1) {

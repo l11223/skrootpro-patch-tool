@@ -1,4 +1,4 @@
-# TigerRoot(Pro) — ARM64 Linux 内核 ROOT 修补工具
+# SKRoot(Pro) — ARM64 Linux 内核 ROOT 修补工具
 
 <p align="center">
   <img src="https://img.shields.io/badge/arch-AArch64-blue" />
@@ -53,7 +53,7 @@
 
 ### Pro 独有：模块加载器跳板
 
-在 `die` 区域头部预留 4 字节 `init_flag`（初始值 0）。首次 root_key 匹配成功时置 1，标记内核 patch 已激活。用户态 SDK 检测此标志后部署 autorun bootstrap，后续开机自动加载 TigerRoot 模块。
+在 `die` 区域头部预留 4 字节 `init_flag`（初始值 0）。首次 root_key 匹配成功时置 1，标记内核 patch 已激活。用户态 SDK 检测此标志后部署 autorun bootstrap，后续开机自动加载 SKRoot 模块。
 
 ```asm
 ADR  X13, init_flag        ; 计算 init_flag 地址
@@ -118,7 +118,7 @@ make clean
 ### 输出示例
 
 ```
-TigerRoot(Pro) ARM64 Linux内核ROOT提权工具 V1.0
+SKRoot(Pro) ARM64 Linux内核ROOT提权工具 V1.0
 仅支持 Linux 内核 6.1.x、6.6.x 和 6.12.x
 
 内核版本: 6.12.23
@@ -227,11 +227,11 @@ if (init_flag == 0) init_flag = 1;
 
 ---
 
-## 与 Lite 版的区别
+## 与 SKRoot Lite 的区别
 
 ### Patcher 层面（本工具）
 
-| 特性 | Lite Patcher | TigerRoot Pro Patcher |
+| 特性 | Lite Patcher | Pro Patcher |
 |---|---|---|
 | 内核版本 | 4.4 ~ 6.6 | 6.1 / 6.6 / 6.12 |
 | 模块加载器跳板 | ❌ | ✅ init_flag 机制 |
@@ -248,7 +248,7 @@ Pro 的真正价值不在 patcher，而在用户态的完整生态系统：
 
 ```
 ┌─────────────────────────────────────────────────┐
-│  TigerRoot Pro 完整架构                           │
+│  SKRoot Pro 完整架构                              │
 │                                                 │
 │  ┌───────────────┐                              │
 │  │ Patcher (本工具)│ ← 修补内核，注入 shellcode    │
@@ -267,7 +267,7 @@ Pro 的真正价值不在 patcher，而在用户态的完整生态系统：
 │          │                                      │
 │          ▼                                      │
 │  ┌───────────────┐  ┌───────────────┐           │
-│  │ testInstall    │  │ TigerRoot Mgr │           │
+│  │ testInstall    │  │ PermissionMgr │           │
 │  │ (环境部署)      │  │ (Android App) │           │
 │  └───────────────┘  └───────────────┘           │
 │                                                 │
@@ -280,7 +280,7 @@ Pro 的真正价值不在 patcher，而在用户态的完整生态系统：
 └─────────────────────────────────────────────────┘
 ```
 
-本仓库只包含 Patcher 工具。SDK、testInstall、TigerRoot Manager 等用户态组件不在此仓库中。
+本仓库只包含 Patcher 工具。SDK、testInstall、PermissionManager 等用户态组件不在此仓库中。
 
 ---
 
